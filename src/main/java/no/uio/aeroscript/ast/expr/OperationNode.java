@@ -1,4 +1,6 @@
 package no.uio.aeroscript.ast.expr;
+import java.util.Random;
+import no.uio.aeroscript.type.Point;
 
 public class OperationNode extends Node {
     private final String operation;
@@ -13,6 +15,34 @@ public class OperationNode extends Node {
 
     @Override
     public Object evaluate() {
-        // Implement method to evaluate the various expressions
+        switch (operation) {
+            case "PLUS": 
+                return (Float) left.evaluate() + (Float) right.evaluate();
+            
+            case "MINUS": 
+                return (Float) left.evaluate() - (Float) right.evaluate();
+            
+            case "TIMES": 
+                return (Float) left.evaluate() * (Float) right.evaluate();
+            
+            case "NEG":     // Gjør man det for begge eller bare en side???
+                return -(Float) left.evaluate(); 
+            
+            case "RANDOM": 
+                float min = (Float) left.evaluate();
+                float max = (Float) right.evaluate();
+                Random random = new Random();       // hvorfor rødt? implementerer den ikke fra Gramatikken?
+                return min + random.nextFloat() * (max - min);
+            
+            case "POINT": 
+                    float x = (Float) left.evaluate();
+                    float y = (Float) right.evaluate();
+                    return new Point(x, y);
+                
+                default:
+                    throw new UnsupportedOperationException("Operation not supported: " + operation);
+                
+        }
+
     }
 }
