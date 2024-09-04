@@ -32,7 +32,18 @@ NUMBER: '-'?[0-9]+('.'[0-9]+)?;
 // Entry point
 program : (expression)* EOF;
 
-expression : /* Insert expressions */;
+expression 
+    : expression (PLUS | MINUS | TIMES) expression 
+    |        NEG 
+    |        RANDOM range? 
+    |        POINT point 
+    |        NUMBER 
+    |        LPAREN expression RPAREN
+    ;       
 
-point : /* Insert point */;
-range : /* Insert range */;
+point 
+    : LPAREN expression COMMA RPAREN
+    ;
+range 
+    : LSQUARE expression COMMA expression RSQUARE
+    ;
