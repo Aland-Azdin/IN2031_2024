@@ -31,7 +31,7 @@ public class OperationNode extends Node {
             case "RANDOM": 
                 float min = (Float) left.evaluate();
                 float max = (Float) right.evaluate();
-                Random random = new Random();       // hvorfor rødt? implementerer den ikke fra Gramatikken?
+                Random random = new Random();       
                 return min + random.nextFloat() * (max - min);
             
             case "POINT": 
