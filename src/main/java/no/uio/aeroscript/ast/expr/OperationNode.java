@@ -25,14 +25,14 @@ public class OperationNode extends Node {
             case "TIMES": 
                 return (Float) left.evaluate() * (Float) right.evaluate();
             
-            case "NEG":     // Gjør man det for begge eller bare en side???
-                return -(Float) left.evaluate(); 
+            case "NEG":    
+                return -1*(Float) left.evaluate(); 
             
             case "RANDOM": 
                 float min = (Float) left.evaluate();
                 float max = (Float) right.evaluate();
                 Random random = new Random();       
-                return min + random.nextFloat() * (max - min);
+                return (float) (min + (max - min) * random.nextFloat());
             
             case "POINT": 
                     float x = (Float) left.evaluate();
