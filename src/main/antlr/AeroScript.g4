@@ -33,7 +33,7 @@ NUMBER: '-'?[0-9]+('.'[0-9]+)?;
 program : (expression)* EOF;
 
 expression 
-    : expression (PLUS | MINUS | TIMES) expression 
+    : expression (PLUS | MINUS | TIMES) expression 
     |        NEG 
     |        RANDOM range? 
     |        POINT point 
@@ -45,5 +45,5 @@ point
     : LPAREN expression COMMA RPAREN
     ;
 range 
-    : LSQUARE expression COMMA expression RSQUARE
+    : LSQUARE min=expression COMMA max=expression RSQUARE
     ;
